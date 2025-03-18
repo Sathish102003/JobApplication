@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as jobService from '../services/jobService';
 
 // src/store/jobSlice.js
-export const fetchJobs = createAsyncThunk('jobs/fetch', async () => {
-  const res = await jobService.getJobs();
+export const fetchJobs = createAsyncThunk('jobs/fetch', async (email) => {
+  const res = await jobService.getJobs(email);
   return res.data;
 });
 

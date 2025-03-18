@@ -34,7 +34,8 @@ const CreateJob = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const finalCompany = companyName === 'Other' ? customCompany : companyName;
-    dispatch(addJob({ companyName: finalCompany, jobTitle, applicationStatus, appliedDate, interviewDate, userId, notes }));
+    const email = user.email;
+    dispatch(addJob({ companyName: finalCompany, jobTitle, applicationStatus, appliedDate, interviewDate, userId, notes, email }));
     navigate('/dashboard');
   };
 

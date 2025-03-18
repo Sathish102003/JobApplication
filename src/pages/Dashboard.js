@@ -23,7 +23,7 @@ const Dashboard = () => {
     if (!user) {
       navigate('/');
     } else {
-      dispatch(fetchJobs());
+      dispatch(fetchJobs(user.email));
     }
   }, [user, dispatch, navigate]);
 

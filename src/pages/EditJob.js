@@ -5,6 +5,7 @@ import { updateJob, fetchJobs, clearJobMessage } from '../store/jobSlice';
 import Message from '../components/Message';
 
 const EditJob = () => {
+  const { user } = useSelector((state) => state.auth);
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,10 +17,11 @@ const EditJob = () => {
     jobTitle: '',
     appliedDate: '',
     interviewDate: '',
+    email: '',
   });
 
   useEffect(() => {
-    if (jobs.length === 0) dispatch(fetchJobs());
+    if (jobs.length === 0) dispatch(fetchJobs(user.email));
   }, [dispatch, jobs]);
 
   useEffect(() => {
@@ -33,6 +35,7 @@ const EditJob = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    formData.email = "";
     dispatch(updateJob({ id, data: formData }));
     setTimeout(() => {
       dispatch(clearJobMessage());
